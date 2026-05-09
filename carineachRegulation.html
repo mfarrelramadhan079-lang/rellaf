@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scuderia Ferrari — F1 Cars by Regulation Era</title>
+  <style>
+    :root {
+      --red: #dc0000;
+      --red-dark: #9b0000;
+      --yellow: #f5c800;
+      --bg: #0e0e0e;
+      --bg2: #181818;
+      --bg3: #222;
+      --border: #2e2e2e;
+      --text: #e8e8e8;
+      --muted: #888;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* NAV */
+    nav {
+      background: var(--red);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: 3px;
+      color: #fff;
+    }
+
+    .nav-logo .shield {
+      font-size: 22px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+
+    nav ul li a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav ul li a:hover { color: #fff; }
+
+    /* HERO */
+    .hero {
+      background: var(--bg2);
+      border-bottom: 3px solid var(--red);
+      padding: 60px 24px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: 'SF';
+      position: absolute;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 260px;
+      color: rgba(220,0,0,0.05);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      letter-spacing: -10px;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      letter-spacing: 2px;
+      line-height: 1;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span { color: var(--red); }
+
+    .hero p {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 36px;
+    }
+
+    .hero-stats .stat {
+      text-align: center;
+    }
+
+    .hero-stats .stat .num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 36px;
+      color: var(--red);
+    }
+
+    .hero-stats .stat .lbl {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+    }
+
+    /* ERA SECTION */
+    .era-section {
+      margin-top: 50px;
+    }
+
+    .era-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .era-tag {
+      background: var(--red);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 2px;
+      padding: 3px 10px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .era-tag.gold { background: #8b6914; }
+    .era-tag.blue { background: #003880; }
+    .era-tag.green { background: #1a5c2e; }
+
+    .era-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .era-years {
+      font-size: 13px;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    /* CAR GRID */
+    .car-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .car-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .car-card:hover {
+      border-color: var(--red);
+      transform: translateY(-2px);
+    }
+
+    /* CAR VISUAL — SVG placeholder styled per car */
+    .car-visual {
+      width: 100%;
+      height: 160px;
+      background: var(--bg3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .car-visual .car-year-bg {
+      position: absolute;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 80px;
+      color: rgba(255,255,255,0.03);
+      letter-spacing: -3px;
+    }
+
+    .car-visual svg {
+      width: 220px;
+      height: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .car-info {
+      padding: 14px 16px;
+    }
+
+    .car-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 1px;
+      margin-bottom: 2px;
+    }
+
+    .car-year {
+      font-size: 12px;
+      color: var(--red);
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .car-desc {
+      font-size: 13px;
+      color: #aaa;
+      line-height: 1.55;
+    }
+
+    .car-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .car-tags span {
+      font-size: 10px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 2px 8px;
+      border-radius: 2px;
+      letter-spacing: 0.5px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111;
+      border-top: 3px solid var(--red);
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #555;
+      letter-spacing: 0.5px;
+    }
+
+    footer span { color: var(--red); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="shield">🏎</span> FORMULA 1
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Scuderia Ferrari — Formula 1</div>
+  <h1>Mobil Ferrari<br><span>di Setiap Era Regulasi</span></h1>
+  <p>Ferrari adalah satu-satunya tim yang berlomba di setiap musim Formula 1 sejak 1950 — lebih dari 75 tahun evolusi teknis.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="num">75+</div><div class="lbl">Tahun di F1</div></div>
+    <div class="stat"><div class="num">242</div><div class="lbl">Kemenangan GP</div></div>
+    <div class="stat"><div class="num">16</div><div class="lbl">Gelar Konstruktor</div></div>
+  </div>
+</div>
+  <!-- ERA 1: 2026 -->
+  <div class="era-section">
+    <div class="era-header">
+      <span class="era-tag" style="background:#ff6060; color:#000;">Akan Datang</span>
+      <span class="era-title">Next Generation — 2026 Regulations</span>
+      <span class="era-years">2026 →</span>
+    </div>
+    <div class="car-grid">
+      <div class="car-card highlight">
+        <div class="car-visual">
+          <span class="car-year-bg">26</span>
+          <!-- SF-26 SVG side view -->
+          <img src="C:\Users\HP\Downloads\2026ferraricarright-Photoroom.png" width="300" height="75">
+        </div>
+        <div class="car-info">
+          <div class="car-name">SF-26</div>
+          <div class="car-year">2026 · Next Gen</div>
+          <div class="car-desc">Dirancang untuk regulasi besar yang menghadirkan mobil lebih kecil dan ringan dengan aerodinamika aktif. Split daya 50/50 antara mesin dan motor listrik (350 kW).</div>
+          <div class="car-tags">
+            <span>Active Aero</span><span>350kW Hybrid</span><span>Tanpa MGU-H</span><span>Wheelbase -200mm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ERA 2: Ground Effect 2022-2025 -->
+  <div class="era-section">
+    <div class="era-header">
+      <span class="era-tag">Current</span>
+      <span class="era-title">Ground Effect Era — 2022–2025 Regulations</span>
+      <span class="era-years">2022 – 2025</span>
+    </div>
+    <div class="car-grid">
+
+      <!-- SF-25 -->
+      <div class="car-card">
+        <div class="car-visual">
+          <span class="car-year-bg">25</span>
+          <img src="C:\Users\HP\Downloads\2025_Japan_GP_-_Ferrari_-_Lewis_Hamilton_-_FP1-Photoroom.png" width="300" height="200">
+        </div>
+        <div class="car-info">
+          <div class="car-name">SF-25</div>
+          <div class="car-year">2025 · Ground Effect</div>
+          <div class="car-desc">Evolusi dari SF-24 dengan fokus pada peningkatan downforce dan efisiensi aerodinamika. Roda 18 inci dan efek tanah venturi.</div>
+          <div class="car-tags"><span>Ground Effect</span><span>18" Wheels</span><span>V6 Turbo Hybrid</span></div>
+        </div>
+      </div>
+
+      <!-- SF-24 -->
+      <div class="car-card">
+        <div class="car-visual">
+          <span class="car-year-bg">24</span>
+          <img src="C:\Users\HP\Downloads\Carlos_Sainz_Chinese_GP_2024-Photoroom.png" width="300" height="200">
+        </div>
+        <div class="car-info">
+          <div class="car-name">SF-24</div>
+          <div class="car-year">2024 · Ground Effect</div>
+          <div class="car-desc">Melanjutkan era ground effect dengan fokus pada venturi tunnels dan roda 18 inci, menargetkan performa lebih tinggi dan bobot lebih ketat.</div>
+          <div class="car-tags"><span>Ground Effect</span><span>18" Wheels</span><span>Venturi Tunnels</span></div>
+        </div>
+      </div>
+
+      <!-- F1-75 / SF-23 -->
+      <div class="car-card">
+        <div class="car-visual">
+          <span class="car-year-bg">22</span>
+          <img src="C:\Users\HP\Downloads\Ferrari_20SF_2023_Front3_4-Photoroom.png" width="300" height="150">
+        </div>
+        <div class="car-info">
+          <div class="car-name">F1-75 / SF-23</div>
+          <div class="car-year">2022–2023 · Ground Effect</div>
+          <div class="car-desc">Mobil pertama era regulasi baru yang memaksimalkan aerodinamika ground-effect. F1-75 dinamakan untuk merayakan 75 tahun Ferrari.</div>
+          <div class="car-tags"><span>New Regulations</span><span>Ground Effect</span><span>18" Debut</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ERA 3: Turbo Hybrid -->
+  <div class="era-section">
+    <div class="era-header">
+      <span class="era-tag blue">Turbo Hybrid</span>
+      <span class="era-title">Turbo-Hybrid Era — 2014–2021 Regulations</span>
+      <span class="era-years">2014 – 2021</span>
+    </div>
+    <div class="car-grid">
+
+      <!-- SF21 -->
+      <div class="car-card">
+        <div class="car-visual">
+          <span class="car-year-bg">21</span>
+          <img src="C:\Users\HP\Downloads\FIA_F1_Austria_2021_Nr._16_Leclerc_(side)-Photoroom.png" width="300" height="200">
+        </div>
+        <div class="car-info">
+          <div class="car-name">SF21</div>
+          <div class="car-year">2021 · Final Tahun Era Lama</div>
+          <div class="car-desc">Tahun terakhir dari era regulasi turbo-hybrid lama, sebelum transisi besar ke regulasi 2022 dengan ground effect.</div>
+          <div class="car-tags"><span>V6 Turbo</span><span>MGU-H</span><span>13" Wheels</span></div>
+        </div>
+      </div>
+
+      <!-- SF90 -->
+      <div class="car-card">
+        <div class="car-visual">
+          <span class="car-year-bg">19</span>
+          <img src="C:\Users\HP\Downloads\FIA_F1_Austria_2019_Nr._5_Vettel_1-Photoroom.png" width="300" height="200">
+        </div>
+        <div class="car-info">
+          <div class="car-name">SF90</div>
+          <div class="car-year">2019 · Turbo Hybrid</div>
+          <div class="car-desc">Dikenal dengan kecepatan lurus yang ekstrem, mematuhi aturan penyederhanaan aerodinamika tahun tersebut. Salah satu Ferrari tercepat di era hybrid awal.</div>
+          <div class="car-tags"><span>Top Speed</span><span>V6 Turbo</span><span>Low Drag</span></div>
+        </div>
+      </div>
+
+      <!-- SF70H/SF71H -->
+      <div class="car-card">
+        <div class="car-visual">
+          <span class="car-year-bg">17</span>
+          <img src="C:\Users\HP\Downloads\Sebastian_Vettel_2017_Malaysia_FP1_1-Photoroom.png" width="300" height="150">
+        </div>
+        <div class="car-info">
+          <div class="car-name">SF70-H / SF71-H</div>
+          <div class="car-year">2017–2018 · High Downforce</div>
+          <div class="car-desc">Dirancang untuk mobil lebih lebar dan ban lebih besar, menandai kembalinya regulasi downforce tinggi. Ferrari bersaing ketat dengan Mercedes.</div>
+          <div class="car-tags"><span>Wider Car</span><span>High Downforce</span><span>V6 Hybrid</span></div>
+        </div>
+      </div>
+
+      <!-- F14-T -->
+      <div class="car-card">
+        <div class="car-visual">
+          <span class="car-year-bg">14</span>
+          <img src="C:\Users\HP\Downloads\Fernando_Alonso_2014_British_GP_002_(cropped)-Photoroom.png" width="300" height="200">
+        </div>
+        <div class="car-info">
+          <div class="car-name">F14-T</div>
+          <div class="car-year">2014 · Awal Era Turbo Hybrid</div>
+          <div class="car-desc">Ferrari turbo-hybrid pertama, menandai awal era 1.6 liter V6. Transisi dramatis dari mesin V8 atmosferik ke unit daya hybrid kompleks.</div>
+          <div class="car-tags"><span>V6 Turbo-Hybrid</span><span>MGU-H</span><span>MGU-K</span><span>Pertama</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ERA 4: V8 + Historical -->
+  <div class="era-section">
+    <div class="era-header">
+      <span class="era-tag gold">Klasik</span>
+      <span class="era-title">V8 Era & Pergeseran Regulasi Historis</span>
+      <span class="era-years">1987 – 2013</span>
+    </div>
+    <div class="car-grid">
+
+      <!-- 248 F1 -->
+      <div class="car-card">
+        <div class="car-visual">
+          <span class="car-year-bg">06</span>
+          <img src="C:\Users\HP\Downloads\Felipe_Massa_2006_Canada_(crop)-Photoroom.png" width="300" height="150">
+        </div>
+        <div class="car-info">
+          <div class="car-name">248 F1</div>
+          <div class="car-year">2006 · Era V8</div>
+          <div class="car-desc">Transisi dari V10 ke mesin 2.4 liter V8 atmosferik. Michael Schumacher dan Felipe Massa membalap dengan mobil ini.</div>
+          <div class="car-tags"><span>2.4L V8</span><span>Atmosferik</span><span>Schumacher</span></div>
+        </div>
+      </div>
+
+      <!-- F1/87 -->
+      <div class="car-card">
+        <div class="car-visual">
+          <span class="car-year-bg">87</span>
+          <img src="C:\Users\HP\Downloads\5d036dd63ad9250aee5323cf-Photoroom.png" width="300" height="200">
+        </div>
+        <div class="car-info">
+          <div class="car-name">F1/87</div>
+          <div class="car-year">1987 · Era Turbo V6 Klasik</div>
+          <div class="car-desc">Ferrari di era turbo berkapasitas V6 yang penuh tenaga. Sebelum kembali ke mesin atmosferik, era ini menghasilkan mobil-mobil paling bertenaga dalam sejarah F1.</div>
+          <div class="car-tags"><span>Turbo V6</span><span>1.5L</span><span>Klasik</span><span>1000+ HP</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Scuderia <span>Ferrari</span>. Proyek Muhammad Farrel Ramadhan.</p>
+</footer>
+
+</body>
+</html>

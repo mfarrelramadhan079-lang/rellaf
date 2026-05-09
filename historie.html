@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scuderia Ferrari - Sejarah F1</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #1a1a1a;
+      color: #ffffff;
+    }
+
+    /* NAVBAR */
+    nav {
+      background: #e10600;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav .logo {
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* HERO */
+    .hero {
+      background: #111;
+      border-bottom: 4px solid #e10600;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .hero .badge {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      color: #e10600;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: #ccc;
+    }
+
+    /* MAIN CONTENT */
+    .container {
+      max-width: 960px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      font-size: 20px;
+      border-left: 4px solid #e10600;
+      padding-left: 10px;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: #2a2a2a;
+      border-radius: 4px;
+      padding: 18px 15px;
+      text-align: center;
+      border-top: 3px solid #e10600;
+    }
+
+    .stat-card .number {
+      font-size: 32px;
+      font-weight: bold;
+      color: #e10600;
+    }
+
+    .stat-card .label {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    /* INTRO */
+    .intro-box {
+      background: #2a2a2a;
+      padding: 20px;
+      border-radius: 4px;
+      margin-bottom: 30px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #ccc;
+    }
+
+    .intro-box strong {
+      color: #fff;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      margin-bottom: 30px;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .timeline-item .year-badge {
+      background: #e10600;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 3px;
+      white-space: nowrap;
+      height: fit-content;
+      margin-top: 2px;
+    }
+
+    .timeline-item .content {
+      background: #2a2a2a;
+      border-radius: 4px;
+      padding: 12px 15px;
+      flex: 1;
+    }
+
+    .timeline-item .content h4 {
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .timeline-item .content p {
+      font-size: 13px;
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    /* LEGENDS TABLE */
+    .legends-box {
+      background: #2a2a2a;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 30px;
+    }
+
+    .legends-box table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .legends-box table th,
+    .legends-box table td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #3a3a3a;
+      font-size: 13px;
+    }
+
+    .legends-box table th {
+      color: #e10600;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .legends-box table tr:last-child td { border-bottom: none; }
+
+    .champ-badge {
+      background: #e10600;
+      color: #fff;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 2px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111;
+      border-top: 3px solid #e10600;
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">🏎 FORMULA 1</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="badge"></div>
+    <img src="C:\Users\HP\Downloads\G_V027BWQAASNgK-Photoroom.png" width="700" height="350">
+    <h1>SCUDERIA FERRARI</h1>
+    <p>Tim Formula 1 tertua dan tersukses sepanjang masa — sejak 1950</p>
+  </div>
+
+  <div class="container">
+
+    <!-- STATISTIK -->
+    <h2>Statistik Tim</h2>
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="number">16</div>
+        <div class="label">Gelar Konstruktor</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">15</div>
+        <div class="label">Gelar Pembalap</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">243</div>
+        <div class="label">Kemenangan GP</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">1950</div>
+        <div class="label">Debut F1</div>
+      </div>
+    </div>
+
+    <!-- TENTANG -->
+    <h2>Tentang Scuderia Ferrari</h2>
+    <div class="intro-box">
+      <strong>Scuderia Ferrari</strong> adalah tim Formula 1 tertua dan paling sukses dalam sejarah kejuaraan dunia. Didirikan oleh <strong>Enzo Ferrari</strong> pada 16 November 1929 di Maranello, Italia, tim ini awalnya berperan sebagai tim balap untuk Alfa Romeo sebelum akhirnya memproduksi mobilnya sendiri.<br><br>
+      Dengan logo <strong>Kuda Jingkrak (Cavallino Rampante)</strong> yang ikonik — diambil dari simbol milik pilot perang Italia <em>Francesco Baracca</em> — Ferrari telah menjadi simbol semangat balap dan keunggulan teknik. Ferrari adalah satu-satunya tim yang telah berkompetisi di <strong>setiap musim F1 sejak 1950</strong>, menjadikan mereka fondasi paling konsisten dalam olahraga ini.
+    </div>
+
+    <!-- TIMELINE SEJARAH -->
+    <h2>Sejarah Perjalanan</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="year-badge">1929</div>
+        <div class="content">
+          <h4>Berdirinya Scuderia Ferrari</h4>
+          <p>Enzo Ferrari mendirikan Scuderia Ferrari pada 16 November 1929, awalnya sebagai tim balap untuk Alfa Romeo di berbagai kejuaraan Eropa.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="year-badge">1950</div>
+        <div class="content">
+          <h4>Debut di Kejuaraan Dunia F1</h4>
+          <p>Ferrari menjadi satu-satunya tim yang berpartisipasi sejak musim pertama Kejuaraan Dunia F1 tahun 1950. Kehadiran mereka langsung mencuri perhatian dengan Ferrari 125 F1.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="year-badge">1951</div>
+        <div class="content">
+          <h4>Kemenangan F1 Pertama</h4>
+          <p>Jose Froilan Gonzalez memberikan kemenangan Grand Prix pertama bagi Ferrari di British Grand Prix 1951 di Silverstone — momen bersejarah yang mengawali dominasi Ferrari.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="year-badge">1952–53</div>
+        <div class="content">
+          <h4>Alberto Ascari: Juara Dunia Pertama Ferrari</h4>
+          <p>Alberto Ascari memenangkan gelar juara dunia dua kali berturut-turut (1952 dan 1953), memberikan Ferrari kejuaraan pembalap pertama mereka.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="year-badge">1975–77</div>
+        <div class="content">
+          <h4>Era Niki Lauda</h4>
+          <p>Niki Lauda membawa Ferrari kembali ke puncak dengan gelar juara dunia 1975. Meski selamat dari kecelakaan parah di Nürburgring 1976, Lauda kembali meraih gelar kedua bersama Ferrari pada 1977.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="year-badge">1979</div>
+        <div class="content">
+          <h4>Jody Scheckter & Gilles Villeneuve</h4>
+          <p>Jody Scheckter meraih gelar juara dunia untuk Ferrari, didampingi Gilles Villeneuve yang menjadi salah satu pembalap paling dicintai dalam sejarah tim ini.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="year-badge">2000–04</div>
+        <div class="content">
+          <h4>Era Emas Michael Schumacher</h4>
+          <p>Masa paling dominan dalam sejarah F1 modern. Michael Schumacher meraih 5 gelar juara dunia berturut-turut bersama Ferrari (2000–2004), rekor yang baru disamai Lewis Hamilton. Ferrari juga meraih 6 gelar konstruktor berturut-turut.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="year-badge">2007</div>
+        <div class="content">
+          <h4>Kimi Räikkönen: Gelar Terakhir Hingga Kini</h4>
+          <p>Kimi Räikkönen meraih gelar juara dunia terakhir Ferrari pada 2007, dalam salah satu musim paling dramatis dalam sejarah F1, baru diputuskan di balapan terakhir.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="year-badge">2019–kini</div>
+        <div class="content">
+          <h4>Era Charles Leclerc & Era Modern</h4>
+          <p>Charles Leclerc menjadi harapan baru Ferrari, meraih sejumlah kemenangan impresif. Bersama Lewis Hamilton yang bergabung pada 2025, Ferrari terus berjuang merebut kembali kejayaan mereka di era modern.</p>
+        </div>
+      </div>
+
+    </div>
+    <!-- PEMBALAP LEGENDA -->
+    <h2>Pembalap Legendaris Ferrari</h2>
+    <div class="legends-box">
+      <table>
+        <thead>
+          <tr>
+            <th>Pembalap</th>
+            <th>Negara</th>
+            <th>Periode</th>
+            <th>Prestasi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alberto Ascari</td>
+            <td>🇮🇹 Italia</td>
+            <td>1950–1954</td>
+            <td><span class="champ-badge">Juara 1952, 1953</span></td>
+          </tr>
+          <tr>
+            <td>Niki Lauda</td>
+            <td>🇦🇹 Austria</td>
+            <td>1974–1977</td>
+            <td><span class="champ-badge">Juara 1975, 1977</span></td>
+          </tr>
+          <tr>
+            <td>Gilles Villeneuve</td>
+            <td>🇨🇦 Kanada</td>
+            <td>1977–1982</td>
+            <td>6 Kemenangan GP, Ikon Ferrari</td>
+          </tr>
+          <tr>
+            <td>Michael Schumacher</td>
+            <td>🇩🇪 Jerman</td>
+            <td>1996–2006</td>
+            <td><span class="champ-badge">Juara 2000–2004 (5×)</span></td>
+          </tr>
+          <tr>
+            <td>Kimi Räikkönen</td>
+            <td>🇫🇮 Finlandia</td>
+            <td>2007–2009, 2014–2018</td>
+            <td><span class="champ-badge">Juara 2007</span></td>
+          </tr>
+          <tr>
+            <td>Charles Leclerc</td>
+            <td>🇲🇨 Monaco</td>
+            <td>2019–sekarang</td>
+            <td>Harapan Ferrari di era modern</td>
+          </tr>
+          <tr>
+            <td>Lewis Hamilton</td>
+            <td>🇬🇧 Inggris</td>
+            <td>2025–sekarang</td>
+            <td>7× Juara Dunia, bergabung Ferrari 2025</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Scuderia Ferrari. Proyek Muhammad Farrel Ramadhan.</p>
+  </footer>
+
+</body>
+</html>

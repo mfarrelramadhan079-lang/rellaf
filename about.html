@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scuderia Ferrari — Formula 1</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --red:    #e10600;
+      --gold:   #ffcc00;
+      --dark:   #0d0d0d;
+      --surface:#181818;
+      --card:   #1f1f1f;
+      --border: #2c2c2c;
+      --text:   #f0f0f0;
+      --muted:  #888;
+    }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Source Sans 3', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--red);
+      padding: 0 40px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      border-bottom: 3px solid #aa0000;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    /* navbar
+    
+    /* Prancing Horse SVG */
+    .horse-icon { width: 36px; height: 36px; }
+
+    .header-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .header-badge {
+      background: rgba(0,0,0,0.25);
+      padding: 5px 14px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      border-radius: 2px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      background: #0a0a0a;
+      min-height: 400px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    /* Background: big SF initials */
+    .hero-bg-text {
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Oswald', sans-serif;
+      font-size: 260px;
+      font-weight: 700;
+      color: rgba(225,6,0,0.06);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Animated Ferrari car SVG */
+    .hero-car {
+      position: absolute;
+      bottom: 60px;
+      right: 60px;
+      width: 460px;
+      filter: drop-shadow(0 20px 40px rgba(225,6,0,0.25));
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 60px 40px 50px;
+      max-width: 560px;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 5px;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(44px, 6vw, 72px);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 0.95;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .hero-name span { color: var(--red); }
+
+    .hero-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 440px;
+    }
+
+    .hero-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--red);
+      margin: 18px 0;
+    }
+
+    /* ── QUICK STATS STRIP ── */
+    .stats-strip {
+      background: var(--red);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 2px solid #c00;
+    }
+
+    .stat-item {
+      padding: 22px 30px;
+      border-right: 1px solid rgba(0,0,0,0.2);
+      text-align: center
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-val {
+      font-family: 'Oswald', sans-serif;
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1;
+      color: #fff;
+    }
+
+    .stat-lbl {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    /* ── FOOTER ── */
+    footer {
+      background: #0a0a0a;
+      border-top: 3px solid var(--red);
+      padding: 24px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer .brand {
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--red);
+    }
+
+    footer p { font-size: 12px; color: #444; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content { animation: fadeUp 0.7s ease both; }
+    .stats-strip  { animation: fadeUp 0.7s 0.15s ease both; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-left">
+    <span class="header-title">Scuderia Ferrari</span>
+  </div>
+  <span class="header-badge">F1 2026</span>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg-text">SF</div>
+
+  <!-- Ferrari F1 Car SVG -->
+
+  <div class="hero-glow"></div>
+
+  <div class="hero-content">
+    <div class="hero-label">Scuderia Ferrari — Formula 1</div>
+    <h1 class="hero-name">La <span>Rossa</span><br>Terkuat</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">Tim tertua dan paling ikonik dalam sejarah Formula 1. Berdiri sejak 1950, Ferrari adalah satu-satunya tim yang telah berlomba di setiap musim F1 tanpa absen.</p>
+    <center>
+    <img src="C:\Users\HP\Downloads\2025_Japan_GP_-_Ferrari_-_Lewis_Hamilton_-_FP1-Photoroom.png" alt="gambar" width="1000" height="450">
+    </center>
+</div>
+</div>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-val">2nd</div>
+    <div class="stat-lbl">Season Position</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">110</div>
+    <div class="stat-lbl">Season Points</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">3</div>
+    <div class="stat-lbl">GP Podiums</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">4</div>
+    <div class="stat-lbl">GP Races</div>
+  </div>
+</div><br><br><br>
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="brand">SCUDERIA FERRARI</div>
+  </div>
+  <p>© 2026 Formula 1. Proyek Muhammad Farrel Ramadhan.</p>
+</footer>
+
+</body>
+</html>
